@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,600&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- CUSTOM CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- JS -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
+  <script type="module" defer src="./js/script.js"></script>
+
+  <!-- <script defer src="./js/classes/Videojuego.js"></script> -->
+  <title>Tienda de Videojuegos</title>
+</head>
+
+<body>
+  <header>
+    <a href="#">
+      Login
+    </a>
+  </header>
+  <h1 id="insert">Tienda Videojuegos</h1>
+  <main class="flex">
+    <section>
+      <h2>Gestionar Videojuegos</h2>
+      <form>
+        <div class="text">
+          <input type="text" id="name" placeholder="Nombre" autofocus />
+          <input type="text" id="price" placeholder="Precio" />
+        </div>
+        <div class="select">
+          <select id="category">
+            <option value="1">XBOX 360</option>
+            <option value="2">PS5</option>
+            <option value="3">Switch</option>
+            <option value="4">PC</option>
+          </select>
+          <select id="genre">
+            <option value="1">Acción</option>
+            <option value="2">Plataformas</option>
+            <option value="3">FPS</option>
+          </select>
+        </div>
+        <input class="btn" type="button" value="Enviar" />
+        <span class="editButtons">
+          <input class="btnEdit" type="button" value="Editar" id="btnEdit" />
+          <input class="btnClose" type="button" value="Cerrar" id="btnEdit" />
+        </span>
+
+        <div class="message"></div>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Juego<span class="material-icons game">arrow_drop_down</span></th>
+            <th>Precio<span class="material-icons price">arrow_drop_down</span></th>
+            <th>Categoría</th>
+            <th>Género</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="table">
+
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+
+</html>
