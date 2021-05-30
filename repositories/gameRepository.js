@@ -1,13 +1,18 @@
 const Videogame = require("../models/videogame");
-
+const Image = require("../models/Image");
 exports.insertGame = async (game) => {
   return await Videogame.create(game);
 };
 
 exports.listGames = async () => {
-  return await Videogame.findAll({ order: [["createdAt", "DESC"]] });
+  return await Videogame.findAll({
+    include: {
+      model: Image,
+      order: [["updatedAt", "ASC"]],
+    },
+  });
 };
-
+//({ order: [["createdAt", "DESC"]] });
 exports.findGameById = async (id) => {
   return Videogame.findOne({ where: { id } });
 };

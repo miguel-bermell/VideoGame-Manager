@@ -11,6 +11,7 @@ export const INPUT = Object.freeze({
   alert: document.querySelector(".message"),
   arrow: document.querySelector(".price"),
   btnClose: document.querySelector(".btnClose"),
+  selectImg: document.querySelector("#images"),
 });
 
 export const ALERT = Object.freeze({

@@ -25,3 +25,5 @@ export const alertTime = (input) => {
     input.innerText = "";
   }, 3000);
 };
+
+export const defaultImg = "https://i.imgur.com/a60WgNk.png";

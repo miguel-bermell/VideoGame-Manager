@@ -8,6 +8,7 @@ const cors = require("cors");
 const loadModels = require("./models/relationship");
 var indexRouter = require("./routes/index");
 var gamesRouter = require("./routes/videogames");
+const imagesRouter = require("./routes/images");
 
 var app = express();
 loadModels();
@@ -21,5 +22,5 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/videogames", gamesRouter);
-
+app.use("/images", imagesRouter);
 module.exports = app;

@@ -1,11 +1,12 @@
 import { Videogame } from "./models/Videogame.js";
 import { INPUT, ALERT } from "./utils/constants.js";
-import { removeColor, removeClass, alertTime } from "./utils/validations.js";
+import { removeClass, alertTime, defaultImg } from "./utils/validations.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   getGames();
   resetForm();
   orderByPrice();
+  getImages();
 });
 
 const createGame = () => {
@@ -24,7 +25,8 @@ const createGame = () => {
     INPUT.name.value,
     +INPUT.price.value,
     +INPUT.category.value,
-    +INPUT.genre.value
+    +INPUT.genre.value,
+    +INPUT.selectImg.value
   );
   console.log(game);
   INPUT.form.reset();
@@ -32,13 +34,6 @@ const createGame = () => {
 };
 
 const insertGame = async (game) => {
-  /*  const post = JSON.stringify(game);
-  try {
-    const { data } = await axios.post("http://localhost:3000/videogames", post);
-  } catch (error) {
-    console.log(err.message);
-  } */
-
   // PREGUNTAR A JAVI
 
   await fetch("http://localhost:3000/videogames", {
@@ -51,6 +46,30 @@ const insertGame = async (game) => {
 
   await clearHTML();
   await getGames();
+};
+
+const getImages = () => {
+  fetch("http://localhost:3000/images/all")
+    .then((response) => response.json())
+    .then((results) => {
+      insertImages(results);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+const insertImages = (images) => {
+  const container = INPUT.selectImg;
+  const data = images
+    .map((img) => {
+      return `
+            <option value="${img.id}"> ${img.name} </option>
+
+            `;
+    })
+    .join(" ");
+  container.innerHTML = data;
 };
 
 const getGames = () => {
@@ -103,13 +122,14 @@ const editVg = (game) => {
   }; */
   INPUT.btnEdit.addEventListener("click", () => {
     updateGame(game.id);
+    console.log(game.id);
   });
   INPUT.btnClose.addEventListener("click", () => {
     INPUT.form.reset();
     updateGameAlers();
   });
 };
-
+//Revisar esta función
 const updateGame = async (id) => {
   console.log(id);
   if (!INPUT.name.value || !INPUT.price.value) {
@@ -124,7 +144,8 @@ const updateGame = async (id) => {
     INPUT.name.value,
     INPUT.price.value,
     INPUT.category.value,
-    INPUT.genre.value
+    INPUT.genre.value,
+    INPUT.selectImg.value
   );
 
   await fetch(`http://localhost:3000/videogames/${id}`, {
@@ -153,29 +174,49 @@ const updateGameAlers = () => {
 };
 
 const paintGames = (data) => {
+  console.log(data);
   for (let t of data) {
-    const v = new Videogame(t.id, t.name, +t.price, +t.category, +t.genre);
+    console.log(t.Image.url);
+
+    const v = new Videogame(
+      t.id,
+      t.name,
+      +t.price,
+      +t.category,
+      +t.genre,
+      t.Image.url
+    );
     console.log(v);
     paintGame(v);
   }
 };
 
 const paintGame = (game) => {
+  console.log(game);
   if (game) {
     const container = document.querySelector("#table");
     const tr = document.createElement("tr");
+    const td = document.createElement("td");
     tr.id = game.id;
-    const btnDelete = document.createElement("td");
+
+    const image = document.createElement("img");
+    image.src = game.ImageId;
+    image.classList.add("img-game");
+    td.appendChild(image);
+
+    let btnDelete = createTd("X");
 
     btnDelete.classList.add("delete-game");
-    btnDelete.innerText = "X";
 
-    const anchor = document.createElement("a");
-    anchor.href = "#insert";
+    let anchor = document.createElement("td");
 
-    const btnEdit = document.createElement("i");
+    const btnEdit = document.createElement("a");
+    btnEdit.href = "#insert";
     btnEdit.classList.add("fas", "fa-pencil-alt");
     anchor.appendChild(btnEdit);
+
+    tr.appendChild(td);
+
     let tdName = createTd(game.name);
     tr.appendChild(tdName);
 

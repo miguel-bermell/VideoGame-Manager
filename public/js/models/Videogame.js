@@ -1,16 +1,18 @@
 export class Videogame {
-  constructor(id, name, price, category, genre) {
+  constructor(id, name, price, category, genre, ImageId) {
     if (id) {
       this.id = id;
       this.name = name;
       this.price = price;
       this.category = category;
       this.genre = genre;
+      this.ImageId = ImageId;
     } else {
       this.name = name;
       this.price = price;
       this.category = category;
       this.genre = genre;
+      this.ImageId = ImageId;
     }
   }
 
