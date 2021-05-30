@@ -193,6 +193,9 @@ select {
   width: 250px;
   margin: 1rem;
 }
+.selectImg {
+  width: unset;
+}
 
 .editButtons {
   transition: all 0.3s;

@@ -10,9 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const createGame = () => {
-  if (!INPUT.name.value || !INPUT.price.value) {
+  console.log(INPUT.selectImg.value);
+  if (!INPUT.name.value || !INPUT.price.value || INPUT.selectImg.value == 0) {
     INPUT.name.classList.add("alert");
     INPUT.price.classList.add("alert");
+    INPUT.selectImg.classList.add("alert");
     INPUT.alert.classList.add("red");
     return (INPUT.alert.innerText = ALERT.alert1);
   }
@@ -61,15 +63,16 @@ const getImages = () => {
 
 const insertImages = (images) => {
   const container = INPUT.selectImg;
+  let optionDefault = `<option value="0" selected disabled hidden>Selecciona imagen</option>`;
   const data = images
     .map((img) => {
       return `
             <option value="${img.id}"> ${img.name} </option>
-
             `;
     })
     .join(" ");
-  container.innerHTML = data;
+  optionDefault += data;
+  container.innerHTML = optionDefault;
 };
 
 const getGames = () => {
@@ -111,6 +114,7 @@ const editVg = (game) => {
   INPUT.price.value = game.price;
   INPUT.category.value = game.category;
   INPUT.genre.value = game.genre;
+  INPUT.selectImg.value = game.ImageId;
   INPUT.btn.classList.add("d-none");
   INPUT.btnEdit.classList.add("d-block");
   INPUT.btnClose.classList.add("d-block");
@@ -220,7 +224,7 @@ const paintGame = (game) => {
     let tdName = createTd(game.name);
     tr.appendChild(tdName);
 
-    let tdPrice = createTd(game.price);
+    let tdPrice = createTd(game.price + "€");
 
     tr.appendChild(tdPrice);
     let tdCategory = createTd(game.getCategoryText(game.category));
@@ -236,8 +240,6 @@ const paintGame = (game) => {
     btnEdit.onclick = () => {
       getGame(game.id);
     };
-    /*           const { Images } = game;
-            const url = Images.length ? Images[0].url : ""; */
   }
 };
 
@@ -267,7 +269,7 @@ const orderByPrice = () => {
 };
 
 const resetForm = () => {
-  const inputs = [INPUT.name, INPUT.price];
+  const inputs = [INPUT.name, INPUT.price, INPUT.selectImg];
 
   inputs.forEach((input) => {
     input.onclick = () => {

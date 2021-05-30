@@ -1,13 +1,5 @@
 import { INPUT } from "./constants.js";
 
-if (!INPUT.name.value || !INPUT.price.value) {
-}
-
-const validation = (data, classlist) => {
-  INPUT.data.classList.add(classlist);
-  INPUT.data.classList.remove(classList);
-};
-
 export const removeColor = (input) => {
   const colors = Array.isArray(input) ? input : [input];
   console.log(colors);

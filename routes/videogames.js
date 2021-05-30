@@ -11,6 +11,24 @@ router.get("/all", async (req, res, next) => {
   }
 });
 
+router.get("/all/asc", async (req, res, next) => {
+  try {
+    const games = await gameService.sortByPriceASC();
+    res.status(200).json(games);
+  } catch (error) {
+    res.status(400).json({ msg: error.message });
+  }
+});
+
+router.get("/all/desc", async (req, res, next) => {
+  try {
+    const games = await gameService.sortByPriceDesc();
+    res.status(200).json(games);
+  } catch (error) {
+    res.status(400).json({ msg: error.message });
+  }
+});
+
 router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;

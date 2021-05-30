@@ -8,6 +8,14 @@ exports.findGame = async (id) => {
   return await gameRepository.findGameById(id);
 };
 
+exports.sortByPriceASC = async () => {
+  return await gameRepository.listGamesByPriceASC();
+};
+
+exports.sortByPriceDesc = async () => {
+  return await gameRepository.listGamesByPriceDESC();
+};
+
 exports.createGame = async (game) => {
   if (!game.name || !game.price || !game.category) {
     throw new Error(
