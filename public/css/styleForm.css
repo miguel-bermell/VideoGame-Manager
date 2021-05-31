@@ -1,0 +1,86 @@
+* {
+  font-family: Arial, sans-serif;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.register {
+  min-height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.register form {
+  max-width: 600px;
+  margin: auto;
+}
+.register input {
+  display: block;
+  width: 100%;
+  padding: 5px 8px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  -webkit-box-shadow: 0 0 0 2px #0005;
+  box-shadow: 0 0 0 2px #0005;
+  margin: 1rem 0rem;
+}
+.register input::-webkit-input-placeholder {
+  font-weight: 700;
+  color: #0007;
+}
+.register input::-moz-placeholder {
+  font-weight: 700;
+  color: #0007;
+}
+.register input:-ms-input-placeholder {
+  font-weight: 700;
+  color: #0007;
+}
+.register input::-ms-input-placeholder {
+  font-weight: 700;
+  color: #0007;
+}
+.register input::placeholder {
+  font-weight: 700;
+  color: #0007;
+}
+.register input:focus {
+  -webkit-box-shadow: 0 0 0 2px #6da3bf;
+  box-shadow: 0 0 0 2px #6da3bf;
+}
+.register h1 {
+  color: #6da3bf;
+  font-size: 2.5rem;
+}
+.register button {
+  padding: 0.5rem 0.8rem;
+  background-color: #6da3bf;
+  border: none;
+  color: #fff;
+  margin: 1rem 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+.bg-img {
+  min-height: 100vh;
+  background-image: url("../img/photo-1603929366195-b6b48aef39db.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const gameService = require("../service/gameService");
+const roleValidation = require("../middleware/roleValidation");
 
 router.get("/all", async (req, res, next) => {
   try {
@@ -66,6 +67,10 @@ router.delete("/:id", async (req, res, next) => {
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
+});
+
+router.get("/", roleValidation("admin"), async (req, res, next) => {
+  res.render("index", { title: "Express" });
 });
 
 module.exports = router;

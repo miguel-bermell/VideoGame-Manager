@@ -15,9 +15,9 @@ exports.listGames = async () => {
 
 exports.listGamesByPriceASC = async () => {
   return await Videogame.findAll({
+    order: [["price", "ASC"]],
     include: {
       model: Image,
-      order: [["price", "ASC"]],
     },
   });
 };
@@ -31,7 +31,6 @@ exports.listGamesByPriceDESC = async () => {
   });
 };
 
-//({ order: [["createdAt", "DESC"]] });
 exports.findGameById = async (id) => {
   return Videogame.findOne({ where: { id } });
 };

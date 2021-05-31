@@ -9,6 +9,7 @@ const loadModels = require("./models/relationship");
 var indexRouter = require("./routes/index");
 var gamesRouter = require("./routes/videogames");
 const imagesRouter = require("./routes/images");
+const usersRouter = require("./routes/users");
 
 var app = express();
 loadModels();
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+app.use("/users", usersRouter);
 app.use("/videogames", gamesRouter);
 app.use("/images", imagesRouter);
 module.exports = app;

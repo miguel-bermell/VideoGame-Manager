@@ -49,6 +49,9 @@ export class Videogame {
       case Videogame.GEN_FPS:
         text = "FPS";
         break;
+      case Videogame.GEN_SPORTS:
+        text = "DEPORTES";
+        break;
     }
     return text;
   }
@@ -62,7 +65,4 @@ Videogame.CAT_PC = 4;
 Videogame.GEN_ACTION = 1;
 Videogame.GEN_PLATFORM = 2;
 Videogame.GEN_FPS = 3;
-
-Videogame.STATUS_AVAILABLE = 1;
-Videogame.STATUS_RENTED = 2;
-Videogame.STATUS_SOLD = 3;
+Videogame.GEN_SPORTS = 4;

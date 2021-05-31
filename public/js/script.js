@@ -1,6 +1,7 @@
 import { Videogame } from "./models/Videogame.js";
 import { INPUT, ALERT } from "./utils/constants.js";
-import { removeClass, alertTime, defaultImg } from "./utils/validations.js";
+import { orderByAsc, orderByDesc } from "./utils/functions.js";
+import { removeClass, alertTime } from "./utils/validations.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   getGames();
@@ -10,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const createGame = () => {
-  console.log(INPUT.selectImg.value);
   if (!INPUT.name.value || !INPUT.price.value || INPUT.selectImg.value == 0) {
     INPUT.name.classList.add("alert");
     INPUT.price.classList.add("alert");
@@ -120,10 +120,7 @@ const editVg = (game) => {
   INPUT.btnClose.classList.add("d-block");
   INPUT.name.style.color = "#061aff";
   INPUT.price.style.color = "#061aff";
-  /*   INPUT.btnEdit.onclick = (e) => {
-    e.preventDefault();
-    updateGame(game.id);
-  }; */
+
   INPUT.btnEdit.addEventListener("click", () => {
     updateGame(game.id);
     console.log(game.id);
@@ -176,8 +173,8 @@ const updateGameAlers = () => {
   removeClass(INPUT.btn, "d-none");
   alertTime(INPUT.alert);
 };
-
-const paintGames = (data) => {
+//Preguntar a Javi
+export const paintGames = (data) => {
   console.log(data);
   for (let t of data) {
     console.log(t.Image.url);
@@ -257,15 +254,16 @@ function clearHTML() {
 
 const orderByPrice = () => {
   const arrow = INPUT.arrow;
-  arrow.onclick = () => {
+  arrow.addEventListener("click", (event) => {
+    event.preventDefault();
     arrow.classList.toggle("rotate");
-
+    clearHTML();
     if (arrow.classList.contains("rotate")) {
-      console.log("rotando");
+      orderByAsc();
     } else {
-      console.log("ya no roto");
+      orderByDesc();
     }
-  };
+  });
 };
 
 const resetForm = () => {
