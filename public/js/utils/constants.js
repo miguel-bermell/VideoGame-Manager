@@ -12,6 +12,7 @@ export const INPUT = Object.freeze({
   arrow: document.querySelector(".price"),
   btnClose: document.querySelector(".btnClose"),
   selectImg: document.querySelector("#images"),
+  btnDel: document.querySelector("#delete-game"),
 });
 
 export const ALERT = Object.freeze({

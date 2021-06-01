@@ -19,12 +19,13 @@
 }
 
 /* Classes */
-.delete-game,
-.delete-game:hover {
-  /*   float: left; */
+.delete-game {
   cursor: pointer;
   color: var(--color-red);
   font-weight: bold;
+  border: none;
+  background-color: transparent;
+  font-size: 19px;
 }
 
 .btnEdit {
@@ -107,6 +108,11 @@
 }
 .btn:hover {
   box-shadow: 0px 5px 10px 0px #23232386;
+}
+
+.unselectable {
+  background-color: #ddd;
+  cursor: not-allowed;
 }
 
 /* HEADER */
